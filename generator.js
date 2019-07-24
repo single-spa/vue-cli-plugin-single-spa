@@ -12,6 +12,9 @@ module.exports = api => {
   api.extendPackage({
     dependencies: {
       'single-spa-vue': '^1.5.2'
+    },
+    scripts: {
+      "build": "vue-cli-service build --target lib"
     }
   })
 }
