@@ -1,9 +1,8 @@
 {
   "name": "vue-cli-plugin-single-spa",
   "description": "A vue-cli plugin for single-spa applications and parcels",
-  "version": "1.0.0",
-  "scripts": {
-  },
+  "version": "1.0.0-alpha.1",
+  "scripts": {},
   "author": "Joel Denning",
   "license": "MIT"
 }
