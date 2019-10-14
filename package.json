@@ -7,5 +7,5 @@
   "license": "MIT",
   "homepage": "https://single-spa.js.org/docs/ecosystem-vue.html#vue-cli",
   "repository": "https://github.com/CanopyTax/vue-cli-plugin-single-spa",
-  "bugs": "https://github.com/CanopyTax/vue-cli-plugin-single-spa/issues",
+  "bugs": "https://github.com/CanopyTax/vue-cli-plugin-single-spa/issues"
 }
