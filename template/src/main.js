@@ -1,7 +1,9 @@
+import './set-public-path' //eslint-disable-line will complain about order of imports
 import Vue from 'vue';
+import singleSpaVue from 'single-spa-vue';
+
 import App from './App.vue';<% if (usesRouter) { %>
 import router from './router';<% } %>
-import singleSpaVue from 'single-spa-vue';
 
 Vue.config.productionTip = false;
 
