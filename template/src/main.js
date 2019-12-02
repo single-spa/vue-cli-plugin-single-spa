@@ -1,4 +1,4 @@
-import './set-public-path' //eslint-disable-line will complain about order of imports
+import './set-public-path'; //eslint-disable-line will complain about order of imports
 import Vue from 'vue';
 import singleSpaVue from 'single-spa-vue';
 
