@@ -17,9 +17,6 @@ module.exports = api => {
     dependencies: {
       'single-spa-vue': '^1.5.2',
       'systemjs-webpack-interop': '^1.1.0',
-    },
-    scripts: {
-      'build:lib': `vue-cli-service build --target library --name ${normaliseProjectName(projectName)}`,
     }
   })
 }
