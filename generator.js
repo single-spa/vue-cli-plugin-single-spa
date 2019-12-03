@@ -1,4 +1,3 @@
-const { normaliseProjectName } = require('./utils');
 module.exports = api => {
   const isTs = api.entryFile.endsWith('.ts')
   const usesRouter = Boolean(require(api.resolve('package.json')).dependencies['vue-router'])
