@@ -9,7 +9,7 @@ module.exports = api => {
   }, {
     isTs,
     usesRouter,
-    appName: packageJson.name,
+    appName: packageJson.name || 'appName',
   });
 
   api.extendPackage({
