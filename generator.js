@@ -1,7 +1,8 @@
 module.exports = api => {
   const isTs = api.entryFile.endsWith('.ts')
-  const usesRouter = Boolean(require(api.resolve('package.json')).dependencies['vue-router'])
-  const projectName = require(api.resolve('package.json')).name;
+  const { dependencies, name } = require(api.resolve('package.json'));
+  const usesRouter = Boolean(dependencies && dependencies['vue-router']);
+  const appName = name || 'appName';
 
   api.render({
     [api.entryFile]: './template/src/main.js',
@@ -9,7 +10,7 @@ module.exports = api => {
   }, {
     isTs,
     usesRouter,
-    appName: projectName,
+    appName,
   });
 
   api.extendPackage({
