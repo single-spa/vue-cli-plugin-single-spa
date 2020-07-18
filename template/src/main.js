@@ -10,7 +10,13 @@ Vue.config.productionTip = false;
 const vueLifecycles = singleSpaVue({
   Vue,
   appOptions: {
-    render: (h<% if(isTs) {%>: any<% } %>) => h(App),<% if (usesRouter) { %>
+    render(h<% if(isTs) {%>: any<% } %>) {
+      return h(App, {
+        props: {
+          // single-spa props are available on the "this" object. Forward them to your component as needed.
+        },
+      });
+    },<% if (usesRouter) { %>
     router,<% } %>
   },
 });
