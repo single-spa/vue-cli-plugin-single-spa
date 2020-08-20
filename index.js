@@ -1,18 +1,17 @@
 module.exports = (api, options) => {
-  options.css.extract = false
+  options.css.extract = false;
 
-  api.chainWebpack(webpackConfig => {
-    webpackConfig
-      .devServer
+  api.chainWebpack((webpackConfig) => {
+    webpackConfig.devServer
       .headers({
-        'Access-Control-Allow-Origin': '*',
+        "Access-Control-Allow-Origin": "*",
       })
-      .set('disableHostCheck', true)
-    
-    webpackConfig.optimization.delete('splitChunks')
+      .set("disableHostCheck", true);
 
-    webpackConfig.output.libraryTarget('umd')
+    webpackConfig.optimization.delete("splitChunks");
 
-    webpackConfig.set('devtool', 'sourcemap')
-  })
-}
+    webpackConfig.output.libraryTarget("umd");
+
+    webpackConfig.set("devtool", "sourcemap");
+  });
+};
