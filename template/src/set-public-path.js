@@ -1,3 +1,3 @@
-import { setPublicPath } from 'systemjs-webpack-interop';
+import { setPublicPath } from "systemjs-webpack-interop";
 
-setPublicPath('<%=appName%>', 2);
+setPublicPath("<%=appName%>", 2);

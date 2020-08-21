@@ -1,22 +1,33 @@
-module.exports = api => {
-  const isTs = api.entryFile.endsWith('.ts')
-  const { dependencies, name } = require(api.resolve('package.json'));
-  const usesRouter = Boolean(dependencies && dependencies['vue-router']);
-  const appName = name || 'appName';
+const semver = require("semver");
 
-  api.render({
-    [api.entryFile]: './template/src/main.js',
-    './src/set-public-path.js': './template/src/set-public-path.js',
-  }, {
-    isTs,
-    usesRouter,
-    appName,
-  });
+module.exports = (api) => {
+  const isTs = api.entryFile.endsWith(".ts");
+  const { dependencies, name } = require(api.resolve("package.json"));
+  const usesRouter = Boolean(dependencies && dependencies["vue-router"]);
+  const appName = name || "appName";
+  const vueVersion = dependencies.vue;
+  if (!vueVersion) {
+    throw Error(`Could not find vue dependency in package.json`);
+  }
+  const minVueVersion = semver.minVersion(vueVersion);
+  const isVue2 = semver.satisfies(minVueVersion, "<3");
+
+  api.render(
+    {
+      [api.entryFile]: `./template/src/main-vue-${isVue2 ? "2" : "3"}.js`,
+      "./src/set-public-path.js": "./template/src/set-public-path.js",
+    },
+    {
+      isTs,
+      usesRouter,
+      appName,
+    }
+  );
 
   api.extendPackage({
     dependencies: {
-      'single-spa-vue': '^1.5.2',
-      'systemjs-webpack-interop': '^1.1.0',
-    }
-  })
-}
+      "single-spa-vue": "^1.9.0",
+      "systemjs-webpack-interop": "^2.1.2",
+    },
+  });
+};
