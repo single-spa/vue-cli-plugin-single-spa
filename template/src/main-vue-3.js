@@ -18,9 +18,11 @@ const vueLifecycles = singleSpaVue({
           singleSpa: this.singleSpa,
         },
       });
-    },<% if (usesRouter) { %>
-    router,<% } %>
-  },
+    },
+  },<% if (usesRouter) { %>
+  handleInstance(app) {
+    app.use(router);
+  },<% } %>
 });
 
 export const bootstrap = vueLifecycles.bootstrap;
