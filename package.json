@@ -1,7 +1,7 @@
 {
   "name": "vue-cli-plugin-single-spa",
   "description": "A vue-cli plugin for single-spa applications and parcels",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "scripts": {
     "format": "prettier --write .",
     "lint": "eslint ."
@@ -12,7 +12,8 @@
   "repository": "https://github.com/single-spa/vue-cli-plugin-single-spa",
   "bugs": "https://github.com/single-spa/vue-cli-plugin-single-spa/issues",
   "dependencies": {
-    "semver": "^7.3.2"
+    "semver": "^7.3.2",
+    "standalone-single-spa-webpack-plugin": "^1.0.1"
   },
   "husky": {
     "hooks": {
