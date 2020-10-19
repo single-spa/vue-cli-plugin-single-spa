@@ -2,7 +2,10 @@ const semver = require("semver");
 
 module.exports = (api) => {
   const isTs = api.entryFile.endsWith(".ts");
-  const { dependencies = {}, name } = require(api.resolve("package.json"));
+  const { dependencies, name } = require(api.resolve("package.json"));
+  if (!dependencies) {
+    throw Error(`Could not find any dependencies in package.json. Verify that you're in the correct directory, and that dependencies are defined.`);
+  }
   const usesRouter = Boolean(dependencies && dependencies["vue-router"]);
   const appName = name || "appName";
   const vueVersion = dependencies.vue;
