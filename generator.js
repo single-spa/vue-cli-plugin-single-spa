@@ -2,7 +2,7 @@ const semver = require("semver");
 
 module.exports = (api) => {
   const isTs = api.entryFile.endsWith(".ts");
-  const { dependencies, name } = require(api.resolve("package.json"));
+  const { dependencies = {}, name } = require(api.resolve("package.json"));
   const usesRouter = Boolean(dependencies && dependencies["vue-router"]);
   const appName = name || "appName";
   const vueVersion = dependencies.vue;
