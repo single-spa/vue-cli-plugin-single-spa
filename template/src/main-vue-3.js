@@ -1,4 +1,3 @@
-import './set-public-path';
 import { h, createApp } from 'vue';
 import singleSpaVue from 'single-spa-vue';
 

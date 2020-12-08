@@ -1,6 +1,7 @@
 dependencies:
   semver: 7.3.4
   standalone-single-spa-webpack-plugin: 1.2.0
+  systemjs-webpack-interop: 2.3.1
 devDependencies:
   eslint: 7.15.0
   eslint-config-important-stuff: 1.1.0
@@ -1038,6 +1039,12 @@ packages:
       node: ">=8"
     resolution:
       integrity: sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==
+  /systemjs-webpack-interop/2.3.1:
+    dev: false
+    peerDependencies:
+      webpack: "*"
+    resolution:
+      integrity: sha512-9oGeHedLJi3NrRR0OAzC6t03xhTIvb+QcMS752XACaskZQJFw6NVyi62a6+54YsrNj0oo4ejIOge1ZvLmE8ixQ==
   /table/5.4.6:
     dependencies:
       ajv: 6.12.6
@@ -1116,4 +1123,5 @@ specifiers:
   prettier: ^2.0.5
   pretty-quick: ^2.0.1
   semver: ^7.3.2
-  standalone-single-spa-webpack-plugin: ^1.0.1
+  standalone-single-spa-webpack-plugin: ^1.2.0
+  systemjs-webpack-interop: ^2.3.1
