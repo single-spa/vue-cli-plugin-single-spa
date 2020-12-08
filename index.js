@@ -1,5 +1,6 @@
 const SystemJSPublicPathWebpackPlugin = require("systemjs-webpack-interop/SystemJSPublicPathWebpackPlugin");
 const StandaloneSingleSpaPlugin = require("standalone-single-spa-webpack-plugin");
+const { webpack } = require("webpack");
 
 module.exports = (api, options) => {
   options.css.extract = false;
@@ -22,6 +23,8 @@ module.exports = (api, options) => {
     webpackConfig.optimization.delete("splitChunks");
 
     webpackConfig.output.libraryTarget("umd");
+
+    webpackConfig.output.devtoolNamespace(name);
 
     webpackConfig.set("devtool", "sourcemap");
 
