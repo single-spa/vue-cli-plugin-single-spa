@@ -2,10 +2,12 @@ const semver = require("semver");
 
 module.exports = (api) => {
   const isTs = api.entryFile.endsWith(".ts");
-  const packageJsonPath = api.resolve("package.json")
+  const packageJsonPath = api.resolve("package.json");
   const { dependencies, name } = require(packageJsonPath);
   if (!dependencies) {
-    throw Error(`Could not find any dependencies declared in ${packageJsonPath}.`);
+    throw Error(
+      `Could not find any dependencies declared in ${packageJsonPath}.`
+    );
   }
   const usesRouter = Boolean(dependencies && dependencies["vue-router"]);
   const appName = name || "appName";
@@ -19,7 +21,7 @@ module.exports = (api) => {
   api.render(
     {
       [api.entryFile]: `./template/src/main-vue-${isVue2 ? "2" : "3"}.js`,
-      "./src/set-public-path.js": "./template/src/set-public-path.js",
+      ".env.standalone": `./template/.env.standalone`,
     },
     {
       isTs,
@@ -29,9 +31,11 @@ module.exports = (api) => {
   );
 
   api.extendPackage({
+    scripts: {
+      "serve:standalone": "vue-cli-service serve --mode standalone",
+    },
     dependencies: {
-      "single-spa-vue": "^1.9.0",
-      "systemjs-webpack-interop": "^2.1.2",
+      "single-spa-vue": "^2.1.0",
     },
   });
 };
