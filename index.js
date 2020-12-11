@@ -1,6 +1,5 @@
 const SystemJSPublicPathWebpackPlugin = require("systemjs-webpack-interop/SystemJSPublicPathWebpackPlugin");
 const StandaloneSingleSpaPlugin = require("standalone-single-spa-webpack-plugin");
-const { webpack } = require("webpack");
 
 module.exports = (api, options) => {
   options.css.extract = false;
@@ -45,5 +44,7 @@ module.exports = (api, options) => {
           disabled: process.env.STANDALONE_SINGLE_SPA !== "true",
         },
       ]);
+
+    webpackConfig.externals(["single-spa"]);
   });
 };
