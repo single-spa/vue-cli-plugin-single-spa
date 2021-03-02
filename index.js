@@ -45,6 +45,8 @@ module.exports = (api, options) => {
         },
       ]);
 
+    webpackConfig.output.set("jsonpFunction", `webpackJsonp__${name}`);
+
     webpackConfig.externals(["single-spa"]);
   });
 };
