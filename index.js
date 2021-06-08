@@ -25,7 +25,7 @@ module.exports = (api, options) => {
 
     webpackConfig.output.devtoolNamespace(name);
 
-    webpackConfig.set("devtool", "sourcemap");
+    webpackConfig.set("devtool", "source-map");
 
     webpackConfig
       .plugin("SystemJSPublicPathWebpackPlugin")
@@ -44,8 +44,6 @@ module.exports = (api, options) => {
           disabled: process.env.STANDALONE_SINGLE_SPA !== "true",
         },
       ]);
-
-    webpackConfig.output.set("jsonpFunction", `webpackJsonp__${name}`);
 
     webpackConfig.externals(["single-spa"]);
   });
