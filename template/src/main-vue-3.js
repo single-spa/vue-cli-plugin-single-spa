@@ -2,7 +2,9 @@ import { h, createApp } from 'vue';
 import singleSpaVue from 'single-spa-vue';
 
 import App from './App.vue';<% if (usesRouter) { %>
-import router from './router';<% } %>
+import router from './router';<% } %><% if (useStore) { %>
+import store from './store';<% } %><% if (useVuetify) { %>
+import vuetify from './plugins/vuetify'<% } %>
 
 const vueLifecycles = singleSpaVue({
   createApp,
@@ -19,9 +21,11 @@ const vueLifecycles = singleSpaVue({
         */
       });
     },
-  },<% if (usesRouter) { %>
-  handleInstance(app) {
-    app.use(router);
+  },<% if (usesRouter || useStore || useVuetify) { %>
+  handleInstance(app) {<% if (usesRouter) { %>
+    app.use(router);<% } %>% if (usesStore) { %>
+    app.use(store);<% } %><% if (usesVuetify) { %>
+    app.use(vuetify);<% } %>
   },<% } %>
 });
 
