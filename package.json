@@ -1,7 +1,7 @@
 {
   "name": "vue-cli-plugin-single-spa",
   "description": "A vue-cli plugin for single-spa applications and parcels",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "scripts": {
     "format": "prettier --write .",
     "lint": "eslint .",
