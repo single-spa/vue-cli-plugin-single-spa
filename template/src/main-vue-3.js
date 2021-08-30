@@ -21,7 +21,7 @@ const vueLifecycles = singleSpaVue({
         */
       });
     },
-  },<% if (usesRouter || usesVuetify || usesVuetify) { %>
+  },<% if (usesRouter || usesStore || usesVuetify) { %>
   handleInstance(app) {<% if (usesRouter) { %>
     app.use(router);<% } %>% if (usesStore) { %>
     app.use(store);<% } %><% if (usesVuetify) { %>
