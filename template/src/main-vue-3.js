@@ -2,8 +2,8 @@ import { h, createApp } from 'vue';
 import singleSpaVue from 'single-spa-vue';
 
 import App from './App.vue';<% if (usesRouter) { %>
-import router from './router';<% } %><% if (useStore) { %>
-import store from './store';<% } %><% if (useVuetify) { %>
+import router from './router';<% } %><% if (usesStore) { %>
+import store from './store';<% } %><% if (usesVuetify) { %>
 import vuetify from './plugins/vuetify'<% } %>
 
 const vueLifecycles = singleSpaVue({
@@ -21,7 +21,7 @@ const vueLifecycles = singleSpaVue({
         */
       });
     },
-  },<% if (usesRouter || useStore || useVuetify) { %>
+  },<% if (usesRouter || usesVuetify || usesVuetify) { %>
   handleInstance(app) {<% if (usesRouter) { %>
     app.use(router);<% } %>% if (usesStore) { %>
     app.use(store);<% } %><% if (usesVuetify) { %>
