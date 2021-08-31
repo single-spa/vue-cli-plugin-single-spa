@@ -2,8 +2,8 @@ import Vue from 'vue';
 import singleSpaVue from 'single-spa-vue';
 
 import App from './App.vue';<% if (usesRouter) { %>
-import router from './router';<% } %><% if (useStore) { %>
-import store from './store';<% } %><% if (useVuetify) { %>
+import router from './router';<% } %><% if (usesStore) { %>
+import store from './store';<% } %><% if (usesVuetify) { %>
 import vuetify from './plugins/vuetify'<% } %>
 
 Vue.config.productionTip = false;

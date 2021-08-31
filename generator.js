@@ -10,8 +10,8 @@ module.exports = (api) => {
     );
   }
   const usesRouter = Boolean(dependencies && dependencies["vue-router"]);
-  const useStore = Boolean(dependencies && dependencies["vuex"]);
-  const useVuetify = Boolean(dependencies && dependencies["vuetify"]);
+  const usesStore = Boolean(dependencies && dependencies["vuex"]);
+  const usesVuetify = Boolean(dependencies && dependencies["vuetify"]);
   const appName = name || "appName";
   const vueVersion = dependencies.vue;
   if (!vueVersion) {
@@ -28,8 +28,8 @@ module.exports = (api) => {
     {
       isTs,
       usesRouter,
-      useStore,
-      useVuetify,
+      usesStore,
+      usesVuetify,
       appName,
     }
   );
