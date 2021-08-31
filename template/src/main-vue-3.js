@@ -4,6 +4,7 @@ import singleSpaVue from 'single-spa-vue';
 import App from './App.vue';<% if (usesRouter) { %>
 import router from './router';<% } %><% if (usesStore) { %>
 import store from './store';<% } %><% if (usesVuetify) { %>
+
 import vuetify from './plugins/vuetify'<% } %>
 
 const vueLifecycles = singleSpaVue({
