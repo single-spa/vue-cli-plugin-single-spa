@@ -23,7 +23,7 @@ const vueLifecycles = singleSpaVue({
     },
   },<% if (usesRouter || usesStore || usesVuetify) { %>
   handleInstance(app) {<% if (usesRouter) { %>
-    app.use(router);<% } %>% if (usesStore) { %>
+    app.use(router);<% } %><% if (usesStore) { %>
     app.use(store);<% } %><% if (usesVuetify) { %>
     app.use(vuetify);<% } %>
   },<% } %>
