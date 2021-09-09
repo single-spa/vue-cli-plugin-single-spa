@@ -8,6 +8,8 @@ This project is a Vue CLI plugin. Vue provides [this development guide](https://
 
 See [this guide](https://cli.vuejs.org/dev-guide/plugin-dev.html#installing-plugin-locally).
 
+_Make sure to test both Vue 2 and Vue 3, with separate test-apps!_
+
 ```
 vue create test-app
 cd test-app

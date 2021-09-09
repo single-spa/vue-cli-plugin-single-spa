@@ -2,8 +2,8 @@ import Vue from 'vue';
 import singleSpaVue from 'single-spa-vue';
 
 import App from './App.vue';<% if (usesRouter) { %>
-import router from './router';<% } %><% if (usesStore) { %>
-import store from './store';<% } %><% if (usesVuetify) { %>
+import router from './router';<% } if (usesStore) { %>
+import store from './store';<% } if (usesVuetify) { %>
 import vuetify from './plugins/vuetify'<% } %>
 
 Vue.config.productionTip = false;
@@ -25,8 +25,8 @@ const vueLifecycles = singleSpaVue({
         },
       });
     },<% if (usesRouter) { %>
-    router,<% } %><% if (usesStore) { %>
-    store,<% } %><% if (usesVuetify) { %>
+    router,<% } if (usesStore) { %>
+    store,<% } if (usesVuetify) { %>
     vuetify,<% } %>
   },
 });
