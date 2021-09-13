@@ -1,11 +1,11 @@
-name: Build and Test
+name: Test and Lint
 
 on:
   - push
   - pull_request
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
     steps:
