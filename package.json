@@ -4,6 +4,7 @@
   "version": "3.1.2",
   "scripts": {
     "format": "prettier --write .",
+    "check-format": "prettier --check .",
     "lint": "eslint . && ejslint ./template/src",
     "prepare": "husky install"
   },
