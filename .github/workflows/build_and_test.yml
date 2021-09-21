@@ -20,7 +20,7 @@ jobs:
       - run: pnpm run check-format
       - run: pnpm run lint
 
-  test:vue2:
+  test_vue2:
     runs-on: ubuntu-latest
 
     steps:
@@ -34,7 +34,7 @@ jobs:
       - run: pnpm install --frozen-lockfile
       - run: pnpm run test:vue2
 
-  test:vue3:
+  test_vue3:
     runs-on: ubuntu-latest
 
     steps:
