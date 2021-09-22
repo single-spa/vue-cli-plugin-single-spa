@@ -10,9 +10,24 @@ See [this guide](https://cli.vuejs.org/dev-guide/plugin-dev.html#installing-plug
 
 _Make sure to test both Vue 2 and Vue 3, with separate test-apps!_
 
+Manually:
+
 ```
 vue create test-app
 cd test-app
 yarn add --dev file:../vue-cli-plugin-single-spa
 vue invoke single-spa
+```
+
+Automatically:
+
+```
+pnpm run test
+```
+
+You can also run the tests separately for Vue2 and Vue3
+
+```
+pnpm run test:vue2
+pnpm run test:vue3
 ```

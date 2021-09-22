@@ -6,7 +6,10 @@
     "format": "prettier --write .",
     "check-format": "prettier --check .",
     "lint": "eslint . && ejslint ./template/src",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test": "tests/test.sh",
+    "test:vue2": "tests/testVue.sh 2",
+    "test:vue3": "tests/testVue.sh 3"
   },
   "author": "Joel Denning",
   "license": "MIT",
