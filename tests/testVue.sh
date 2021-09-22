@@ -1,14 +1,16 @@
 #!/bin/bash
 
-i= basename "$PWD"
+mkcdir ()
+{
+    mkdir -p -- "$1" &&
+      cd -P -- "$1"
+}
 
 if [ $1 == 2 ] || [ $1 == 3 ];
 then
   ProjectName="test-app-vue$1"
 
-  if [ "$i" != "tests" ]; then
-    cd tests
-  fi
+  mkcdir test/fixtures
 
   cleanup() (
     cd ..
@@ -17,12 +19,12 @@ then
 
   echo $ProjectName
 
-  vue create $ProjectName --no-git --inlinePreset "{\"useConfigFiles\": true,\"plugins\": {},\"vueVersion\": \"$1\"}" || ERRCODE=$?
+  vue create $ProjectName --no-git --inlinePreset "{\"useConfigFiles\": true,\"plugins\": {},\"vueVersion\": \"$1\"}" --packageManager pnpm || ERRCODE=$?
 
   cd $ProjectName
-  yarn add --dev file:../.. || ERRCODE=$?
+  pnpm add ../../../ -D || ERRCODE=$?
   yes Y | vue invoke single-spa || ERRCODE=$?
-  yarn run build || ERRCODE=$?
+  pnpm run build || ERRCODE=$?
 
   cleanup
   exit $ERRCODE
@@ -30,4 +32,3 @@ else
   echo "$1 is no valid Vue Version"
   exit 1  
 fi
-

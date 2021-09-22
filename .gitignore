@@ -63,5 +63,4 @@ typings/
 .next
 
 # Test Directories
-tests/test-app-vue2
-tests/test-app-vue3
+test/fixtures

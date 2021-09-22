@@ -7,7 +7,7 @@
     "check-format": "prettier --check .",
     "lint": "eslint . && ejslint ./template/src",
     "prepare": "husky install",
-    "test": "tests/test.sh",
+    "test": "concurrently \"pnpm:test:*\"",
     "test:vue2": "tests/testVue.sh 2",
     "test:vue3": "tests/testVue.sh 3"
   },
@@ -22,6 +22,7 @@
     "systemjs-webpack-interop": "^2.3.7"
   },
   "devDependencies": {
+    "concurrently": "^6.2.1",
     "ejs-lint": "^1.2.1",
     "eslint": "^7.32.0",
     "eslint-config-important-stuff": "^1.1.0",
