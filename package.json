@@ -8,8 +8,8 @@
     "lint": "eslint . && ejslint ./template/src",
     "prepare": "husky install",
     "test": "concurrently \"pnpm:test:*\"",
-    "test:vue2": "tests/testVue.sh 2",
-    "test:vue3": "tests/testVue.sh 3"
+    "test:vue2": "test/testVue.sh 2",
+    "test:vue3": "test/testVue.sh 3"
   },
   "author": "Joel Denning",
   "license": "MIT",
