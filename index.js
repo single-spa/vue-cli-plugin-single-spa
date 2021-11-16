@@ -1,6 +1,14 @@
 const SystemJSPublicPathWebpackPlugin = require("systemjs-webpack-interop/SystemJSPublicPathWebpackPlugin");
 const StandaloneSingleSpaPlugin = require("standalone-single-spa-webpack-plugin");
 
+function lessThanWebpack5() {
+  const semver = require("semver");
+  const webpack = require(require.resolve("webpack", {
+    paths: [require.resolve("@vue/cli-service")],
+  }));
+  return semver.satisfies(webpack.version, "<5");
+}
+
 module.exports = (api, options) => {
   options.css.extract = false;
 
@@ -25,7 +33,7 @@ module.exports = (api, options) => {
 
     webpackConfig.output.devtoolNamespace(name);
 
-    webpackConfig.set("devtool", "sourcemap");
+    webpackConfig.set("devtool", "source-map");
 
     webpackConfig
       .plugin("SystemJSPublicPathWebpackPlugin")
@@ -45,7 +53,9 @@ module.exports = (api, options) => {
         },
       ]);
 
-    webpackConfig.output.set("jsonpFunction", `webpackJsonp__${name}`);
+    if (lessThanWebpack5()) {
+      webpackConfig.output.set("jsonpFunction", `webpackJsonp__${name}`);
+    }
 
     webpackConfig.externals(["single-spa"]);
   });
