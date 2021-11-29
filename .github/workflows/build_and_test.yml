@@ -20,7 +20,7 @@ jobs:
       - run: pnpm run check-format
       - run: pnpm run lint
 
-  test_vue2:
+  test:
     runs-on: ubuntu-latest
 
     steps:

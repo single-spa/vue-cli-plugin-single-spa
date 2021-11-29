@@ -1,5 +1,6 @@
 #!/bin/bash
-
+Version=`npx -c 'node -p "process.env.npm_package_version"'`
+tgz="../../vue-cli-plugin-single-spa-"$Version".tgz"
 mkcdir ()
 {
     mkdir -p -- "$1" &&
@@ -10,6 +11,8 @@ if [ $1 == 2 ] || [ $1 == 3 ];
 then
   ProjectName="test-app-vue$1"
 
+  pnpm pack --pack-destination test
+
   mkcdir test/fixtures
 
   cleanup() (
@@ -19,12 +22,13 @@ then
 
   echo $ProjectName
 
-  vue create $ProjectName --no-git --inlinePreset "{\"useConfigFiles\": true,\"plugins\": {},\"vueVersion\": \"$1\"}" --packageManager pnpm || ERRCODE=$?
+  vue create $ProjectName --no-git --inlinePreset "{\"useConfigFiles\": true,\"plugins\": {},\"vueVersion\": \"$1\"}" --packageManager npm
 
   cd $ProjectName
-  pnpm add ../../../ -D || ERRCODE=$?
+
+  npm install $tgz
   yes Y | vue invoke single-spa || ERRCODE=$?
-  pnpm run build || ERRCODE=$?
+  npm run build || ERRCODE=$?
 
   cleanup
   exit $ERRCODE
