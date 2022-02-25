@@ -51,18 +51,18 @@ module.exports = (api, options) => {
       webpackConfig.output.libraryTarget("umd");
 
       webpackConfig.devServer
-      .headers({
-        "Access-Control-Allow-Origin": "*",
-      })
-      .set("disableHostCheck", true);
+        .headers({
+          "Access-Control-Allow-Origin": "*",
+        })
+        .set("disableHostCheck", true);
     } else {
       webpackConfig.output.libraryTarget("system");
-      
+
       webpackConfig.devServer
-      .headers({
-        "Access-Control-Allow-Origin": "*",
-      })
-      .set("allowedHosts", "all");
+        .headers({
+          "Access-Control-Allow-Origin": "*",
+        })
+        .set("allowedHosts", "all");
     }
 
     webpackConfig.externals(["single-spa"]);
