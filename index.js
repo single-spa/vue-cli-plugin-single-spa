@@ -21,15 +21,7 @@ module.exports = (api, options) => {
   }
 
   api.chainWebpack((webpackConfig) => {
-    webpackConfig.devServer
-      .headers({
-        "Access-Control-Allow-Origin": "*",
-      })
-      .set("disableHostCheck", true);
-
     webpackConfig.optimization.delete("splitChunks");
-
-    webpackConfig.output.libraryTarget("umd");
 
     webpackConfig.output.devtoolNamespace(name);
 
@@ -55,6 +47,22 @@ module.exports = (api, options) => {
 
     if (lessThanWebpack5()) {
       webpackConfig.output.set("jsonpFunction", `webpackJsonp__${name}`);
+
+      webpackConfig.output.libraryTarget("umd");
+
+      webpackConfig.devServer
+      .headers({
+        "Access-Control-Allow-Origin": "*",
+      })
+      .set("disableHostCheck", true);
+    } else {
+      webpackConfig.output.libraryTarget("system");
+      
+      webpackConfig.devServer
+      .headers({
+        "Access-Control-Allow-Origin": "*",
+      })
+      .set("allowedHosts", "all");
     }
 
     webpackConfig.externals(["single-spa"]);
