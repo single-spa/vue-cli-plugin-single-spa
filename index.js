@@ -23,6 +23,8 @@ module.exports = (api, options) => {
   api.chainWebpack((webpackConfig) => {
     webpackConfig.optimization.delete("splitChunks");
 
+    webpackConfig.output.libraryTarget("umd");
+
     webpackConfig.output.devtoolNamespace(name);
 
     webpackConfig.set("devtool", "source-map");
@@ -48,16 +50,12 @@ module.exports = (api, options) => {
     if (lessThanWebpack5()) {
       webpackConfig.output.set("jsonpFunction", `webpackJsonp__${name}`);
 
-      webpackConfig.output.libraryTarget("umd");
-
       webpackConfig.devServer
         .headers({
           "Access-Control-Allow-Origin": "*",
         })
         .set("disableHostCheck", true);
     } else {
-      webpackConfig.output.libraryTarget("system");
-
       webpackConfig.devServer
         .headers({
           "Access-Control-Allow-Origin": "*",
