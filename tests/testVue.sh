@@ -13,9 +13,10 @@ then
 
   echo "creating vue project"
   pnpx @vue/cli create $ProjectName --no-git --inlinePreset "{\"useConfigFiles\": true,\"plugins\": {},\"vueVersion\": \"$1\"}" --packageManager=pnpm || ERRCODE=$?
-  cat .npmrc
 
   cd $ProjectName
+  ls -al .
+  cat .npmrc
   echo "installing local vue-cli-plugin-single-spa"
   pnpm install -D ../../.. || ERRCODE=$?
   echo "invoking vue-cli-plugin-single-spa"
