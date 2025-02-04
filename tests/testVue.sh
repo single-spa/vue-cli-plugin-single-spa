@@ -13,7 +13,7 @@ then
 
   echo "creating vue project"
 
-  pnpm config set auto-install-peers true
+  pnpm up --config.strict-peer-dependencies=false
 
   pnpx @vue/cli create $ProjectName --no-git --inlinePreset "{\"useConfigFiles\": true,\"plugins\": {},\"vueVersion\": \"$1\"}" --packageManager=pnpm || ERRCODE=$?
 
