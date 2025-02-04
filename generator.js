@@ -6,7 +6,7 @@ module.exports = (api) => {
   const { dependencies, name } = require(packageJsonPath);
   if (!dependencies) {
     throw Error(
-      `Could not find any dependencies declared in ${packageJsonPath}.`
+      `Could not find any dependencies declared in ${packageJsonPath}.`,
     );
   }
   const usesRouter = Boolean(dependencies && dependencies["vue-router"]);
@@ -31,7 +31,7 @@ module.exports = (api) => {
       usesStore,
       usesVuetify,
       appName,
-    }
+    },
   );
 
   api.extendPackage({
@@ -39,7 +39,7 @@ module.exports = (api) => {
       "serve:standalone": "vue-cli-service serve --mode standalone",
     },
     dependencies: {
-      "single-spa-vue": "^2.1.0",
+      "single-spa-vue": "^3.0.1",
     },
   });
 };

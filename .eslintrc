@@ -1,6 +1,0 @@
-{
-  "extends": ["important-stuff"],
-  "globals": {
-    "process": true
-  }
-}
