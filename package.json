@@ -40,5 +40,6 @@
   },
   "peerDependencies": {
     "webpack": "*"
-  }
+  },
+  "packageManager": "pnpm@10.2.0"
 }

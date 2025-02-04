@@ -28,12 +28,16 @@ module.exports = (api, options) => {
   api.chainWebpack((webpackConfig) => {
     webpackConfig.optimization.delete("splitChunks");
 
-    // Terser error occurs when libraryTarget is set to "system" rather than "umd"
-    webpackConfig.output.libraryTarget(outputSystemJS ? "umd" : "module");
-    webpackConfig.set("experiments", { outputModule: true });
-    // webpack doesn't yet support HMR for native modules
-    webpackConfig.devServer.hot(false);
-    webpackConfig.target("web");
+    if (outputSystemJS) {
+      // Terser error occurs when libraryTarget is set to "system" rather than "umd"
+      webpackConfig.output.libraryTarget("umd");
+    } else {
+      webpackConfig.output.libraryTarget("module");
+      webpackConfig.set("experiments", { outputModule: true });
+      // webpack doesn't yet support HMR for native modules
+      webpackConfig.devServer.hot(false);
+      webpackConfig.target("web");
+    }
 
     webpackConfig.output.devtoolNamespace(name);
 
