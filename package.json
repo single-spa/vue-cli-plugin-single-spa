@@ -8,7 +8,7 @@
     "lint": "eslint . && ejslint ./template/src",
     "prepare": "husky",
     "clean": "rimraf tests/fixtures",
-    "test": "pnpm clean && pnpm test:vue2:systemjs && pnpm test:vue2:esm && pnpm test:vue3:systemjs && pnpm test:vue3:esm",
+    "test": "npm clean && npm test:vue2:systemjs && npm test:vue2:esm && npm test:vue3:systemjs && npm test:vue3:esm",
     "test:vue2:systemjs": "tests/testVue.sh 2 true",
     "test:vue2:esm": "tests/testVue.sh 2 false",
     "test:vue3:systemjs": "tests/testVue.sh 3 true",
