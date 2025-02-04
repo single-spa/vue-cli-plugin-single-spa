@@ -18,7 +18,7 @@ then
   echo "Fixing weird pnpm github actions installation issue"
   cd $ProjectName
   cat .npmrc
-  cat "shamefully-hoist=true\nstrict-peer-dependencies=false\n" > .npmrc
+  echo "shamefully-hoist=true\nstrict-peer-dependencies=false\n" > .npmrc
   cat .npmrc
   pnpm install
 
