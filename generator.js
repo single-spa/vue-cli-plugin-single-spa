@@ -34,12 +34,12 @@ module.exports = (api) => {
     },
   );
 
-  // api.extendPackage({
-  //   scripts: {
-  //     "serve:standalone": "vue-cli-service serve --mode standalone",
-  //   },
-  //   dependencies: {
-  //     "single-spa-vue": "^3.0.1",
-  //   },
-  // });
+  api.extendPackage({
+    scripts: {
+      "serve:standalone": "vue-cli-service serve --mode standalone",
+    },
+    dependencies: {
+      "single-spa-vue": "^3.0.1",
+    },
+  });
 };

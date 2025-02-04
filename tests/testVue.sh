@@ -11,12 +11,17 @@ then
     cd tests/fixtures
   fi
 
+  echo "creating vue project"
   pnpx @vue/cli create $ProjectName --no-git --inlinePreset "{\"useConfigFiles\": true,\"plugins\": {},\"vueVersion\": \"$1\"}" --packageManager=pnpm || ERRCODE=$?
 
   cd $ProjectName
+  echo "installing local vue-cli-plugin-single-spa"
   pnpm install -D ../../.. || ERRCODE=$?
-  yes Y | pnpx @vue/cli invoke single-spa || ERRCODE=$?
+  echo "invoking vue-cli-plugin-single-spa"
+  yes | pnpx @vue/cli invoke single-spa || ERRCODE=$?
+  echo "creating vue.config.js"
   echo "module.exports={pluginOptions: {'single-spa': {outputSystemJS: $2}}}" > vue.config.js
+  echo "building"
   pnpm build || ERRCODE=$?
 
   exit $ERRCODE
