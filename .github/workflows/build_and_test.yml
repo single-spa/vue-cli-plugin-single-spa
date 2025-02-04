@@ -13,8 +13,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "22"
-      - uses: pnpm/action-setup@v4
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm run check-format
-      - run: pnpm run lint
-      - run: pnpm run test
+      - run: npm ci
+      - run: npm run check-format
+      - run: npm run lint
+      - run: npm run test
