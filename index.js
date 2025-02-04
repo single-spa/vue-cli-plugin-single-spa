@@ -31,6 +31,15 @@ module.exports = (api, options) => {
     if (outputSystemJS) {
       // Terser error occurs when libraryTarget is set to "system" rather than "umd"
       webpackConfig.output.libraryTarget("umd");
+
+      webpackConfig
+        .plugin("SystemJSPublicPathWebpackPlugin")
+        .use(SystemJSPublicPathWebpackPlugin, [
+          {
+            rootDirectoryLevel: 2,
+            systemjsModuleName: name,
+          },
+        ]);
     } else {
       webpackConfig.output.libraryTarget("module");
       webpackConfig.set("experiments", { outputModule: true });
@@ -42,17 +51,6 @@ module.exports = (api, options) => {
     webpackConfig.output.devtoolNamespace(name);
 
     webpackConfig.set("devtool", "source-map");
-
-    if (outputSystemJS) {
-      webpackConfig
-        .plugin("SystemJSPublicPathWebpackPlugin")
-        .use(SystemJSPublicPathWebpackPlugin, [
-          {
-            rootDirectoryLevel: 2,
-            systemjsModuleName: name,
-          },
-        ]);
-    }
 
     webpackConfig
       .plugin("StandaloneSingleSpaPlugin")
