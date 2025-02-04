@@ -11,7 +11,7 @@ then
     cd tests/fixtures
   fi
 
-  pnpx @vue/cli create $ProjectName --no-git --inlinePreset "{\"useConfigFiles\": true,\"plugins\": {},\"vueVersion\": \"$1\"}" || ERRCODE=$?
+  pnpx @vue/cli create $ProjectName --no-git --inlinePreset "{\"useConfigFiles\": true,\"plugins\": {},\"vueVersion\": \"$1\"}" --packageManager=pnpm || ERRCODE=$?
 
   cd $ProjectName
   pnpm install -D ../../.. || ERRCODE=$?
