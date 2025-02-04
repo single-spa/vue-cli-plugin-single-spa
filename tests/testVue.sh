@@ -20,7 +20,7 @@ then
   cat .npmrc
   echo "shamefully-hoist=true\nstrict-peer-dependencies=false\n" > .npmrc
   cat .npmrc
-  pnpm install
+  pnpm install --no-frozen-lockfile
 
   echo "installing local vue-cli-plugin-single-spa"
   pnpm install -D ../../.. || ERRCODE=$?
