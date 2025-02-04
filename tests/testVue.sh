@@ -12,11 +12,15 @@ then
   fi
 
   echo "creating vue project"
+
+  pnpm config set auto-install-peers true
+
   pnpx @vue/cli create $ProjectName --no-git --inlinePreset "{\"useConfigFiles\": true,\"plugins\": {},\"vueVersion\": \"$1\"}" --packageManager=pnpm || ERRCODE=$?
 
   cd $ProjectName
   ls -al .
   cat .npmrc
+  # cat "shamefully-hoist=true\nstrict-peer-dependencies=false\n" > .npmrc
   echo "installing local vue-cli-plugin-single-spa"
   pnpm install -D ../../.. || ERRCODE=$?
   echo "invoking vue-cli-plugin-single-spa"
