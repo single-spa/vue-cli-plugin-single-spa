@@ -5,47 +5,15 @@ on:
   - pull_request
 
 jobs:
-  lint:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
-          node-version: "15"
-      - uses: pnpm/action-setup@v1.2.1
-        with:
-          version: 5.14.1
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm run check-format
-      - run: pnpm run lint
-
-  test_vue2:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: "15"
-      - uses: pnpm/action-setup@v1.2.1
-        with:
-          version: 5.14.1
-      - run: pnpm add -g @vue/cli
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm run test:vue2
-
-  test_vue3:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: "15"
-      - uses: pnpm/action-setup@v1.2.1
-        with:
-          version: 5.14.1
-      - run: pnpm add -g @vue/cli
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm run test:vue3
+          node-version: "22"
+      - run: npm ci
+      - run: npm run check-format
+      - run: npm run lint
+      - run: npm run test

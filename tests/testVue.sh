@@ -4,27 +4,28 @@ i= basename "$PWD"
 
 if [ $1 == 2 ] || [ $1 == 3 ];
 then
-  ProjectName="test-app-vue$1"
+  ProjectName="test-app-vue$1-$2"
 
-  if [ "$i" != "tests" ]; then
-    cd tests
+  if [ "$i" != "fixtures" ]; then
+    mkdir -p tests/fixtures
+    cd tests/fixtures
   fi
 
-  cleanup() (
-    cd ..
-    rm -rf $ProjectName
-  )
+  echo "creating vue project"
 
-  echo $ProjectName
-
-  vue create $ProjectName --no-git --inlinePreset "{\"useConfigFiles\": true,\"plugins\": {},\"vueVersion\": \"$1\"}" || ERRCODE=$?
+  npx @vue/cli create $ProjectName --no-git --inlinePreset "{\"useConfigFiles\": true,\"plugins\": {},\"vueVersion\": \"$1\"}" --packageManager=npm || ERRCODE=$?
 
   cd $ProjectName
-  yarn add --dev file:../.. || ERRCODE=$?
-  yes Y | vue invoke single-spa || ERRCODE=$?
-  yarn run build || ERRCODE=$?
 
-  cleanup
+  echo "installing local vue-cli-plugin-single-spa"
+  npm install -D ../../.. || ERRCODE=$?
+  echo "invoking vue-cli-plugin-single-spa"
+  yes | npx @vue/cli invoke single-spa || ERRCODE=$?
+  echo "creating vue.config.js"
+  echo "module.exports={pluginOptions: {'single-spa': {outputSystemJS: $2}}}" > vue.config.js
+  echo "building"
+  npm run build || ERRCODE=$?
+
   exit $ERRCODE
 else
   echo "$1 is no valid Vue Version"
