@@ -12,17 +12,18 @@ then
   fi
 
   echo "creating vue project"
-  npx @vue/cli create $ProjectName --no-git --inlinePreset "{\"useConfigFiles\": true,\"plugins\": {},\"vueVersion\": \"$1\"}" --packageManager=npm || ERRCODE=$?
+  pnpx @vue/cli create $ProjectName --no-git --inlinePreset "{\"useConfigFiles\": true,\"plugins\": {},\"vueVersion\": \"$1\"}" --packageManager=pnpm || ERRCODE=$?
+  cat ~/.npmrc
 
   cd $ProjectName
   echo "installing local vue-cli-plugin-single-spa"
-  npm install -D ../../.. || ERRCODE=$?
+  pnpm install -D ../../.. || ERRCODE=$?
   echo "invoking vue-cli-plugin-single-spa"
-  yes | npx @vue/cli invoke single-spa || ERRCODE=$?
+  yes | pnpx @vue/cli invoke single-spa || ERRCODE=$?
   echo "creating vue.config.js"
   echo "module.exports={pluginOptions: {'single-spa': {outputSystemJS: $2}}}" > vue.config.js
   echo "building"
-  npm build || ERRCODE=$?
+  pnpm build || ERRCODE=$?
 
   exit $ERRCODE
 else
