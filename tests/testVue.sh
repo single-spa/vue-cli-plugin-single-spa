@@ -13,14 +13,15 @@ then
 
   echo "creating vue project"
 
-  pnpm up --config.strict-peer-dependencies=false
-
   pnpx @vue/cli create $ProjectName --no-git --inlinePreset "{\"useConfigFiles\": true,\"plugins\": {},\"vueVersion\": \"$1\"}" --packageManager=pnpm || ERRCODE=$?
 
+  echo "Fixing weird pnpm github actions installation issue"
   cd $ProjectName
-  ls -al .
   cat .npmrc
-  # cat "shamefully-hoist=true\nstrict-peer-dependencies=false\n" > .npmrc
+  cat "shamefully-hoist=true\nstrict-peer-dependencies=false\n" > .npmrc
+  cat .npmrc
+  pnpm install
+
   echo "installing local vue-cli-plugin-single-spa"
   pnpm install -D ../../.. || ERRCODE=$?
   echo "invoking vue-cli-plugin-single-spa"
